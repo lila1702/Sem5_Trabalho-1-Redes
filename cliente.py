@@ -1,23 +1,38 @@
 '''
 Lila Maria Salvador Frazão - 510809
 '''
-
 import socket
-from random import randint
+from time import sleep
+from random import randrange
 
 HOST = '127.0.0.1'
 PORT = 2017
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect((HOST, PORT))
+# Loop infinito
+while(True):
+    # Conexão com o servidor
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect((HOST, PORT))
+    
+    print(f"Conexão realizada com {HOST} e {PORT}")
+    
+    # Para fins de variação no resultado, eu fiz com que houvesse 15% de chance do número gerado
+    # forçadamente ter no máximo 10 casas
+    chance = randrange(0, 100)
+    if(chance > 85):
+        num_client = str(randrange(0, 10**10))
+    else:
+        num_client = str(randrange(0, 10**30))
+    
+    print(f"O número gerado {num_client} foi enviado...")
 
-num_client = randint(0, 999999999999999999999999999999)
+    # Envia para o servidor
+    client_socket.sendall(str.encode(num_client))
+    # Recebe a resposta do servidor
+    data = client_socket.recv(1024)
 
-#num_client = str(num_client)
-
-print(f"O número gerado foi: {num_client}")
-
-client_socket.sendall(num_client)
-data = client_socket.recv(1024)
-
-print('Mensagem ecoada:', data.decode())
+    print(f"O Servidor decretou que o retorno adequado é: {data.decode()}\nFIM\n")
+    # Fecha a conexão
+    client_socket.close()
+    # Pausa o programa por 10 segundos, e depois tudo se repete
+    sleep(10)
