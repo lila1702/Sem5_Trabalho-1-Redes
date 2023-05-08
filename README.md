@@ -10,7 +10,7 @@ O trabalho consiste em duas aplicações, o do Cliente e o do Servidor.
 O cliente funciona da seguinte forma:
 
 - Vincula um endereço e porta padrões do formato TCP para conexão com o servidor;
-- Irá gerar um número inteiro aleatório de até 30 casas (Para fins de variação nos resultados, eu fiz com que o programa tivesse 15% de chance de garantir um número gerado com até 10 casas);
+- Irá gerar um número inteiro aleatório de até 30 casas;
 - Envia este número para o servidor;
 - Recebe o resultado do servidor e o imprime na tela;
 - Fecha esta conexão;
