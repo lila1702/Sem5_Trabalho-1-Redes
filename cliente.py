@@ -19,12 +19,13 @@ while(True):
     # Para fins de variação no resultado, eu fiz com que houvesse 15% de chance do número gerado
     # forçadamente ter no máximo 10 casas
     chance = randrange(0, 100)
+    tam_num = randrange(1, 30+1)
     if(chance > 85):
         num_client = str(randrange(0, 10**10))
     else:
-        num_client = str(randrange(0, 10**30))
+        num_client = str(randrange(0, 10**tam_num))
     
-    print(f"O número gerado {num_client} foi enviado...")
+    print(f"O número gerado {num_client} de tamanho {len(num_client)} foi enviado...")
 
     # Envia para o servidor
     client_socket.sendall(str.encode(num_client))

@@ -43,17 +43,11 @@ while(True):
     # Se o número recebido do cliente tiver até 10 casas, vai para a função par ou ímpar
     if(len(dado_de_data) <= 10):
         dado_par_impar = numero_string_par_impar(dado_de_data)
-        print(f"Para o número de até 10 dígitos {dado_de_data}, o retorno é: {dado_par_impar}")
+        print(f"\nPara o número de até 10 dígitos {dado_de_data}, o retorno é: {dado_par_impar}")
         client.sendall(dado_par_impar.encode())
     # Caso contrário, vai para a função de gerar uma string aleatória
     else:
         nova_string = gerar_string_len_num(dado_de_data)
-        print(f"Para o número de mais que 10 dígitos {dado_de_data}, o retorno é: {nova_string}")
+        print(f"\nPara o número de mais que 10 dígitos {dado_de_data}, o retorno é: {nova_string}")
         client.sendall(nova_string.encode())
     # Em ambos os casos, enviam de volta para o cliente os seus resultados
-    
-    # Caso não receba nada, fecha a conexão
-    if not data:
-        print ("Fechando a conexão")
-        client.close()
-        break
