@@ -16,6 +16,7 @@ while(True):
     
     print(f"Conexão realizada com {HOST} e {PORT}")
     
+    # Para fins de variação, o tamanho que o número terá é gerado antes do número em si
     tam_num = randrange(1, 30+1)
     
     num_client = str(randrange(0, 10**tam_num))
